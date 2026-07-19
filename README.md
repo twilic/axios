@@ -30,6 +30,15 @@ Set `twilicResponse: false` on a request when you expect a non-Twilic response b
 - `twilicRequestInterceptor(codec?)`
 - `twilicResponseInterceptor(codec?)`
 
+## Runnable example
+
+```bash
+pnpm example:http-roundtrip          # any server from twilic/examples
+pnpm example:http-roundtrip:axios    # this package
+```
+
+See [`http-roundtrip/`](https://github.com/twilic/examples/tree/main/http-roundtrip).
+
 ## Changelog
 
 See [docs/CHANGELOG.md](docs/CHANGELOG.md).

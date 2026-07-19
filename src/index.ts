@@ -4,6 +4,7 @@ import axios, {
   type AxiosResponse,
   type InternalAxiosRequestConfig,
 } from "axios";
+import "./types.js";
 
 export const TWILIC_CONTENT_TYPE = "application/vnd.twilic";
 
