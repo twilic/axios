@@ -7,5 +7,3 @@ declare module "axios" {
     twilicResponse?: boolean;
   }
 }
-
-export {};

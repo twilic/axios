@@ -4,6 +4,7 @@ import axios, {
   type AxiosResponse,
   type InternalAxiosRequestConfig,
 } from "axios";
+
 import "./types.js";
 
 export const TWILIC_CONTENT_TYPE = "application/vnd.twilic";
@@ -18,7 +19,7 @@ function hasTwilicContentType(contentType: string | undefined): boolean {
 }
 
 function normalizeContentType(
-  contentType: string | string[] | undefined,
+  contentType: string | string[] | undefined
 ): string | undefined {
   if (Array.isArray(contentType)) {
     return contentType[0];
@@ -40,7 +41,7 @@ function toUint8Array(data: unknown): Uint8Array {
 }
 
 export function twilicRequestInterceptor(
-  codec: TwilicCodec,
+  codec: TwilicCodec
 ): (config: InternalAxiosRequestConfig) => InternalAxiosRequestConfig {
   return (config) => {
     if (config.twilicBody === undefined) {
@@ -59,11 +60,11 @@ export function twilicRequestInterceptor(
 }
 
 export function twilicResponseInterceptor(
-  codec: TwilicCodec,
+  codec: TwilicCodec
 ): (response: AxiosResponse) => AxiosResponse {
   return (response) => {
     const contentType = normalizeContentType(
-      response.headers["content-type"] as string | string[] | undefined,
+      response.headers["content-type"] as string | string[] | undefined
     );
 
     if (!hasTwilicContentType(contentType)) {
@@ -82,7 +83,7 @@ const defaultCodec: TwilicCodec = {
 
 export function createTwilicAxios(
   instance: AxiosInstance = axios.create(),
-  codec: TwilicCodec = defaultCodec,
+  codec: TwilicCodec = defaultCodec
 ): AxiosInstance {
   instance.interceptors.request.use(twilicRequestInterceptor(codec));
   instance.interceptors.response.use(twilicResponseInterceptor(codec));

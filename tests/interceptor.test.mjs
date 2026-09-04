@@ -1,6 +1,8 @@
-import { test } from "node:test";
 import assert from "node:assert/strict";
+import { test } from "node:test";
+
 import axios from "axios";
+
 import {
   TWILIC_CONTENT_TYPE,
   createTwilicAxios,
@@ -34,7 +36,7 @@ test("twilicResponseInterceptor decodes Twilic responses only", () => {
   const twilicResponse = interceptor({
     data: encoded.buffer.slice(
       encoded.byteOffset,
-      encoded.byteOffset + encoded.byteLength,
+      encoded.byteOffset + encoded.byteLength
     ),
     headers: { "content-type": TWILIC_CONTENT_TYPE },
     status: 200,
@@ -95,7 +97,7 @@ test("createTwilicAxios uses injected codec", async () => {
   const server = await createEchoServer();
   const client = createTwilicAxios(
     axios.create({ baseURL: server.baseUrl }),
-    codec,
+    codec
   );
   try {
     await client.post("/echo", null, { twilicBody: { tracked: true } });
